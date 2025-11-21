@@ -1173,39 +1173,27 @@ body {
     margin: 6px 0;
     font-size: 1em;
 }
-/* ========== DEVICE INFO GRID IMPROVED ========== */
-
-.device-info {
-    background: white;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 25px;
-}
-
-.device-info h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
-}
+/* ======= DEVICE INFO WITH ICONS ======= */
 
 .device-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-/* Una columna al mòbil */
-@media (max-width: 600px) {
-    .device-grid {
-        grid-template-columns: 1fr;
-    }
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
 }
 
 .device-card {
-    background: #f9fafb;
-    padding: 14px 18px;
-    border-radius: 10px;
-    box-shadow: inset 0 0 0 1px #e5e7eb;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.device-card .icon {
+    margin-bottom: 8px;
 }
 
 .device-card .label {
@@ -1214,12 +1202,20 @@ body {
 }
 
 .device-card .value {
-    font-size: 1.1em;
+    font-size: 1.15em;
     font-weight: 600;
     color: #111827;
-    margin-top: 4px;
+    margin-top: 3px;
     word-break: break-word;
 }
+
+/* Mòbil */
+@media (max-width: 600px) {
+    .device-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 /* -------------------- BUTTON -------------------- */
 .btn {
@@ -1367,48 +1363,95 @@ body {
 
     <!-- ========== DEVICE INFO ========== -->
     <div class="device-info">
-        <h2>Informació del dispositiu</h2>
+    <h2>Informació del dispositiu</h2>
 
         <div class="device-grid">
-            
+
             <div class="device-card">
+                <div class="icon">
+                    <!-- MAC ADDRESS ICON -->
+                    <svg width="28" height="28" fill="#4f46e5" viewBox="0 0 24 24">
+                        <path d="M17 7H7a5 5 0 0 0 0 10h10a5 5 0 0 0 0-10ZM7 9h10a3 3 0 1 1 0 6H7a3 3 0 1 1 0-6Z"/>
+                        <circle cx="8.5" cy="12" r="1.5"/>
+                        <circle cx="15.5" cy="12" r="1.5"/>
+                    </svg>
+                </div>
                 <div class="label">MAC</div>
                 <div class="value" id="mac"></div>
             </div>
 
             <div class="device-card">
+                <div class="icon">
+                    <!-- WIFI ICON -->
+                    <svg width="28" height="28" fill="#4f46e5" viewBox="0 0 24 24">
+                        <path d="M12 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm4.95-4.536a6.5 6.5 0 0 0-9.9 0l1.414 1.414a4.5 4.5 0 0 1 7.07 0l1.416-1.414Zm2.829-2.828a10 10 0 0 0-15.556 0l1.415 1.413a8 8 0 0 1 12.727 0l1.414-1.413Z"/>
+                    </svg>
+                </div>
                 <div class="label">WiFi SSID</div>
                 <div class="value" id="ssid"></div>
             </div>
 
             <div class="device-card">
+                <div class="icon">
+                    <!-- SIGNAL ICON -->
+                    <svg width="28" height="28" fill="#4f46e5" viewBox="0 0 24 24">
+                        <path d="M2 20h2v-4H2v4Zm4 0h2v-7H6v7Zm4 0h2v-10h-2v10Zm4 0h2v-13h-2v13Zm4 0h2V3h-2v17Z"/>
+                    </svg>
+                </div>
                 <div class="label">RSSI</div>
                 <div class="value" id="rssi"></div>
             </div>
 
             <div class="device-card">
+                <div class="icon">
+                    <!-- INTERNAL IP ICON -->
+                    <svg width="28" height="28" fill="#4f46e5" viewBox="0 0 24 24">
+                        <path d="M3 5h18v14H3V5Zm2 2v10h14V7H5Zm3 12h2v2H8v-2Zm6 0h2v2h-2v-2Z"/>
+                    </svg>
+                </div>
                 <div class="label">IP interna</div>
                 <div class="value" id="internal_ip"></div>
             </div>
 
             <div class="device-card">
+                <div class="icon">
+                    <!-- PUBLIC IP / INTERNET ICON -->
+                    <svg width="28" height="28" fill="#4f46e5" viewBox="0 0 24 24">
+                        <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2Zm7.93 9h-3.02a15.7 15.7 0 0 0-1.25-5.07A8.01 8.01 0 0 1 19.93 11ZM15.7 11H8.3a13.7 13.7 0 0 1 1.1-4.5c.64-1.5 1.38-2.5 2.6-2.5 1.22 0 1.96 1 2.6 2.5.46 1.05.8 2.33 1.1 4.5Zm-9.6 0H3.07A8.01 8.01 0 0 1 6.34 5.93 15.7 15.7 0 0 0 6.1 11Zm0 2c.06 1.77.43 3.33 1.1 4.5 1 2 2 2.5 2.6 2.5s1.6-.5 2.6-2.5c.67-1.17 1.04-2.73 1.1-4.5H6.1ZM19.93 13a8.01 8.01 0 0 1-3.27 5.07 15.7 15.7 0 0 0 1.25-5.07h3.02Zm-7.33 7c-1.22 0-1.96-1-2.6-2.5-.46-1.05-.8-2.33-1.1-4.5h7.4c-.3 2.17-.64 3.45-1.1 4.5-.64 1.5-1.38 2.5-2.6 2.5Z"/>
+                    </svg>
+                </div>
                 <div class="label">IP pública</div>
                 <div class="value" id="public_ip"></div>
             </div>
 
             <div class="device-card">
+                <div class="icon">
+                    <!-- FIRMWARE ICON -->
+                    <svg width="28" height="28" fill="#4f46e5" viewBox="0 0 24 24">
+                        <path d="M17 2H7a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3Zm1 16a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v13Z"/>
+                        <path d="M9 7h6v2H9V7Zm0 4h6v2H9v-2Zm0 4h4v2H9v-2Z"/>
+                    </svg>
+                </div>
                 <div class="label">Firmware</div>
                 <div class="value" id="firmware"></div>
             </div>
 
             <div class="device-card">
+                <div class="icon">
+                    <!-- CLOCK / UPTIME ICON -->
+                    <svg width="28" height="28" fill="#4f46e5" viewBox="0 0 24 24">
+                        <path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 11h4v2h-6V7h2v6Z"/>
+                    </svg>
+                </div>
                 <div class="label">Uptime</div>
                 <div class="value" id="uptime"></div>
             </div>
 
         </div>
     </div>
+    <!-- ========== ADD SERVICE BUTTON ========== -->
 
+    <br/>
     <button id="openModalBtn" class="btn btn-primary">+ Afegir servei</button>
 
     <div id="alertContainer"></div>

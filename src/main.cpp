@@ -1058,8 +1058,11 @@ body {
 }
 h2 {text-align:center; margin-bottom:20px;}
 input,select {
-    width:100%; padding:12px; margin-top:6px;
+    width:90%; padding:12px; margin-top:6px;
     border:2px solid #ddd; border-radius:8px;
+    padding-block: unset;
+    padding-inline: unset;
+    padding: 4px; font-size:16px;
 }
 button {
     margin-top:22px; width:100%; padding:14px;
@@ -1169,6 +1172,53 @@ body {
 .info-row {
     margin: 6px 0;
     font-size: 1em;
+}
+/* ========== DEVICE INFO GRID IMPROVED ========== */
+
+.device-info {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+}
+
+.device-info h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.device-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Una columna al mòbil */
+@media (max-width: 600px) {
+    .device-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.device-card {
+    background: #f9fafb;
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px #e5e7eb;
+}
+
+.device-card .label {
+    font-size: 0.85em;
+    color: #6b7280;
+}
+
+.device-card .value {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 4px;
+    word-break: break-word;
 }
 
 /* -------------------- BUTTON -------------------- */
@@ -1316,15 +1366,47 @@ body {
     </div>
 
     <!-- ========== DEVICE INFO ========== -->
-    <div class="device-info" id="deviceInfo">
+    <div class="device-info">
         <h2>Informació del dispositiu</h2>
-        <div class="info-row"><strong>MAC:</strong> <span id="mac"></span></div>
-        <div class="info-row"><strong>WiFi SSID:</strong> <span id="ssid"></span></div>
-        <div class="info-row"><strong>RSSI:</strong> <span id="rssi"></span> dBm</div>
-        <div class="info-row"><strong>IP interna:</strong> <span id="internal_ip"></span></div>
-        <div class="info-row"><strong>IP pública:</strong> <span id="public_ip"></span></div>
-        <div class="info-row"><strong>Firmware:</strong> <span id="firmware"></span></div>
-        <div class="info-row"><strong>Uptime:</strong> <span id="uptime"></span></div>
+
+        <div class="device-grid">
+            
+            <div class="device-card">
+                <div class="label">MAC</div>
+                <div class="value" id="mac"></div>
+            </div>
+
+            <div class="device-card">
+                <div class="label">WiFi SSID</div>
+                <div class="value" id="ssid"></div>
+            </div>
+
+            <div class="device-card">
+                <div class="label">RSSI</div>
+                <div class="value" id="rssi"></div>
+            </div>
+
+            <div class="device-card">
+                <div class="label">IP interna</div>
+                <div class="value" id="internal_ip"></div>
+            </div>
+
+            <div class="device-card">
+                <div class="label">IP pública</div>
+                <div class="value" id="public_ip"></div>
+            </div>
+
+            <div class="device-card">
+                <div class="label">Firmware</div>
+                <div class="value" id="firmware"></div>
+            </div>
+
+            <div class="device-card">
+                <div class="label">Uptime</div>
+                <div class="value" id="uptime"></div>
+            </div>
+
+        </div>
     </div>
 
     <button id="openModalBtn" class="btn btn-primary">+ Afegir servei</button>
